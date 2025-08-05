@@ -9,11 +9,9 @@ class PluginServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        // Example: Blade directive
-        Blade::directive('money-plugin', fn() => "<?php echo 'money plugin from plugin'; ?>");
-
+       
         // Example: views
-        $this->loadViewsFrom(__DIR__ . '/views', 'moneyPlugin');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'MoneyPlugin');
         Route::middleware('web')->group(function () {
             require __DIR__ . '/routes.php';
         });

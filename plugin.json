@@ -1,5 +1,5 @@
 {
-  "name": "money-plugin",
+  "name": "MoneyPlugin",
   "version": "1.0.0",
-  "description": "money-plugin that pay money via several ways."
+  "description": "MoneyPlugin that pay money via several ways."
 }
