@@ -7,27 +7,19 @@
     "payVip": "pay_vip_handler",
     "balance": "user_balance_handler"
   },
-  "dashboardmenu": {
-    "name": {
-      "en": "User Balance",
-      "zh": "用户余额",
-      "ja": "ユーザー残高",
-      "fr": "Solde utilisateur"
+  "menus": [
+    {
+      "name": "User Balance",
+      "route": "balance",
+      "icon": "💰",
+      "visible": true,
+      "role": "admin"
     },
-    "route": "balance",
-    "icon": "💰",
-    "visible": true,
-    "role": "admin"
-  },
-  "domainviewmenu": {
-    "name": {
-      "en": "Pay Menu",
-      "zh": "支付菜单",
-      "ja": "支払いメニュー",
-      "fr": "Menu de paiement"
-    },
-    "route": "paymenu",
-    "icon": "💰",
-    "visible": true
-  }
+    {
+      "name": "Pay Menu",
+      "route": "paymenu",
+      "icon": "💰",
+      "visible": true
+    }
+  ]
 }
