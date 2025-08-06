@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugins\MoneyPlugin;
+namespace Plugins\MoneyPlugin\src;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -9,11 +9,14 @@ class PluginServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-       
+       // Check for enabled.flag file
+        if (!file_exists(__DIR__ . '/../enabled.flag')) {
+            return; // ❌ Plugin is disabled
+        }
         // Example: views
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'MoneyPlugin');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'MoneyPlugin');
         Route::middleware('web')->group(function () {
-            require __DIR__ . '/routes.php';
+            require __DIR__ . '/../routes/routes.php';
         });
 
         }
