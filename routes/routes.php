@@ -32,7 +32,8 @@ Route::prefix('plugins')->name('plugins.')->group(function () {
     Route::prefix('MoneyPlugin')->name('MoneyPlugin.')->group(function () {
         Route::get('/', function () {
             return view('MoneyPlugin::index');
-        });
+        })->name('index');  // name the route here
     });
 });
+
 

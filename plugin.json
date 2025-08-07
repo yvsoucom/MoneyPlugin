@@ -7,19 +7,10 @@
     "payVip": "pay_vip_handler",
     "balance": "user_balance_handler"
   },
-  "menus": [
-    {
-      "name": "User Balance",
-      "route": "balance",
-      "icon": "💰",
-      "visible": true,
-      "role": "admin"
-    },
-    {
-      "name": "Pay Menu",
-      "route": "paymenu",
-      "icon": "💰",
-      "visible": true
-    }
-  ]
+  "menus": {
+    "name": "Payment and Balance",
+    "icon": "💰",
+    "visible": true,
+    "role": "user"
+  }
 }
