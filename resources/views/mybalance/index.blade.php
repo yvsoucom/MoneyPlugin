@@ -1,11 +1,10 @@
-<?php
-/**
-* SPDX-FileCopyrightText: (c) 2025  Hangzhou Domain Zones Technology Co., Ltd.
-* SPDX-FileCopyrightText: Institute of Future Science and Technology G.K., Tokyo
-* SPDX-FileContributor: Lican Huang
-* @created 2025-08-07
+{{--
+ SPDX-FileCopyrightText:  (c) 2025  Hangzhou Domain Zones Technology Co., Ltd.
+ SPDX-FileCopyrightText:  Institute of Future Science and Technology G.K., Tokyo
+ SPDX-FileContributor: Lican Huang
+ @created 2025-08-07
 *
-* SPDX-License-Identifier: GPL-3.0-or-later
+* SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-Proprietary
 * License: Dual Licensed – GPLv3 or Commercial
 *
 * This program is free software: you can redistribute it and/or modify
@@ -24,12 +23,9 @@
 * Contact: yvsoucom@gmail.com
 * GPL License: https://www.gnu.org/licenses/gpl-3.0.html
 */
-namespace Plugins\MoneyPlugin\src\Http\Controllers;
-use App\Http\Controllers\Controller;
-class BalanceController extends Controller
-{
-   public function index()
-    {
-       return view('MoneyPlugin::mybalance.index');
-    } // Controller methods will be defined here
-}
+--}}
+
+@extends('layouts.app') {{-- Assuming main app layout --}}
+
+@section('content')
+@endsection
