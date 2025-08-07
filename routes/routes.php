@@ -26,28 +26,29 @@
  */
 
 use Illuminate\Support\Facades\Route;
+use Plugins\MoneyPlugin\src\Http\Controllers\BalanceController;
+use Plugins\MoneyPlugin\src\Http\Controllers\PaymentMethodController;
+use Plugins\MoneyPlugin\src\Http\Controllers\UserBalanceController;
 
-// Public
 Route::prefix('plugins')->name('plugins.')->group(function () {
     Route::prefix('MoneyPlugin')->name('MoneyPlugin.')->group(function () {
+
         Route::get('/', function () {
             return view('MoneyPlugin::index');
         })->name('index');
+
         Route::middleware('auth')->group(function () {
-       
-            Route::get('/paymentmethods', 'MoneyPlugin\Http\Controllers\PaymentMethodController@index')
+            Route::get('/paymentmethods', [PaymentMethodController::class, 'index'])
                 ->name('paymentmethods');
-            Route::get('/balance', 'MoneyPlugin\Http\Controllers\BalanceController@index')
+
+            Route::get('/balance', [BalanceController::class, 'index'])
                 ->name('balance');
-        });// auth middleware
+        });
+
         Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
-            Route::get('userbalance', 'MoneyPlugin\Http\Controllers\Admin\UserBalanceController@index')
+            Route::get('/userbalance', [UserBalanceController::class, 'index'])
                 ->name('userbalance');
-            
-        });// admin middleware
+        });
 
-    });// name the route here
+    });
 });
-
-
-
