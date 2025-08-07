@@ -25,29 +25,11 @@
  * GPL License: https://www.gnu.org/licenses/gpl-3.0.html
  */
 
-use Illuminate\Support\Facades\Route;
-
-// Public
-Route::prefix('plugins')->name('plugins.')->group(function () {
-    Route::prefix('MoneyPlugin')->name('MoneyPlugin.')->group(function () {
-        Route::get('/', function () {
-            return view('MoneyPlugin::index');
-        })->name('index');
-        Route::middleware('auth')->group(function () {
-       
-            Route::get('/paymentmethods', 'MoneyPlugin\Http\Controllers\PaymentMethodController@index')
-                ->name('paymentmethods');
-            Route::get('/balance', 'MoneyPlugin\Http\Controllers\BalanceController@index')
-                ->name('balance');
-        });// auth middleware
-        Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
-            Route::get('userbalance', 'MoneyPlugin\Http\Controllers\Admin\UserBalanceController@index')
-                ->name('userbalance');
-            
-        });// admin middleware
-
-    });// name the route here
-});
-
-
+// resources/lang/en/menu.php
+return [
+    'Payment and Balance' => '支付与余额',
+    'user_balance' => '用户余额',
+    'my balance' => '我的余额',
+    'pay methods' => '支付方式',
+];
 

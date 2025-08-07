@@ -27,8 +27,9 @@
 
 // resources/lang/en/menu.php
 return [
-    'Payment and Balance' => 'Payment and Balance',
-    'user_balance' => 'User Balance',
-    'my balance' => 'My Balance',
-    'pay methods' => 'Pay Methods',
+    'Payment and Balance' => 'Paiement et solde',
+    'user_balance' => 'Solde utilisateur',
+    'my balance'  => 'Mon solde',
+    'pay methods' => 'Méthodes de paiement',
 ];
+

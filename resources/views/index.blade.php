@@ -1,8 +1,8 @@
 {{--
- SPDX-FileCopyrightText:  (c) 2025  Hangzhou Domain Zones Technology Co., Ltd.
- SPDX-FileCopyrightText:  Institute of Future Science and Technology G.K., Tokyo
- SPDX-FileContributor: Lican Huang
- @created 2025-08-07
+SPDX-FileCopyrightText: (c) 2025 Hangzhou Domain Zones Technology Co., Ltd.
+SPDX-FileCopyrightText: Institute of Future Science and Technology G.K., Tokyo
+SPDX-FileContributor: Lican Huang
+@created 2025-08-07
 *
 * SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-Proprietary
 * License: Dual Licensed – GPLv3 or Commercial
@@ -25,11 +25,50 @@
 */
 --}}
 
-@extends('layouts.app')
+@extends('layouts.app') {{-- Assuming main app layout --}}
 
 @section('content')
-    <div class="container mx-auto p-6 bg-white shadow rounded">
-        <h1 class="text-2xl font-bold mb-4">Hello from Money Plugin!</h1>
-        <p>This plugin is using the main app layout </p>
+    <div class="container mx-auto p-6 bg-white shadow rounded min-h-screen">
+
+        {{-- Page title --}}
+        <h1 class="text-3xl font-semibold mb-6 text-gray-800">
+            {{ __('MoneyPlugin::menu.Payment and Balance') }}
+        </h1>
+
+
+        {{-- Admin submenu --}}
+        @can('admin')
+            <nav aria-label="Admin submenu" class="mb-8">
+                <ul class="flex space-x-6 text-blue-600 font-medium">
+                    <li>
+                        <a href="{{ route('plugins.MoneyPlugin.userbalance') }}" class="hover:underline">
+                            {{ __('MoneyPlugin::menu.user_balance') }}
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        @endcan
+
+        {{-- User submenu --}}
+
+        <nav aria-label="User submenu" class="mb-8">
+            <ul class="flex space-x-6 text-green-600 font-medium">
+                <li>
+                    <a href="{{ route('plugins.MoneyPlugin.balance') }}" class="hover:underline">
+                        {{ __('MoneyPlugin::menu.my balance') }}
+                    </a>
+                </li>
+            </ul>
+            <ul class="flex space-x-6 text-green-600 font-medium">
+                <li>
+                    <a href="{{ route('plugins.MoneyPlugin.paymentmethods') }}" class="hover:underline">
+                        {{ __('MoneyPlugin::menu.pay methods') }}
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+
     </div>
 @endsection

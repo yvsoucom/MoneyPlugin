@@ -27,8 +27,9 @@
 
 // resources/lang/en/menu.php
 return [
-    'Payment and Balance' => 'Payment and Balance',
-    'user_balance' => 'User Balance',
-    'my balance' => 'My Balance',
-    'pay methods' => 'Pay Methods',
+    'Payment and Balance' => '支払いと残高',
+    'user_balance' => 'ユーザー残高',
+    'my balance'  => 'マイ残高',
+    'pay methods' => '支払い方法',
 ];
+
