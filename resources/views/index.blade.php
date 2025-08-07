@@ -24,43 +24,39 @@ SPDX-FileContributor: Lican Huang
 * GPL License: https://www.gnu.org/licenses/gpl-3.0.html
 */
 --}}
-
 @extends('layouts.app') {{-- Assuming main app layout --}}
 
 @section('content')
-    <div class="container mx-auto p-6 bg-white shadow rounded min-h-screen">
+    <div class="container mx-auto p-6 bg-white dark:bg-gray-900 shadow dark:shadow-lg rounded min-h-screen">
 
         {{-- Page title --}}
-        <h1 class="text-3xl font-semibold mb-6 text-gray-800">
+        <h1 class="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-100">
             {{ __('MoneyPlugin::menu.Payment and Balance') }}
         </h1>
-
 
         {{-- Admin submenu --}}
         @can('admin')
             <nav aria-label="Admin submenu" class="mb-8">
-                <ul class="flex space-x-6 text-blue-600 font-medium">
+                <ul class="flex space-x-6 text-blue-600 dark:text-blue-400 font-medium">
                     <li>
                         <a href="{{ route('plugins.MoneyPlugin.userbalance') }}" class="hover:underline">
                             {{ __('MoneyPlugin::menu.user_balance') }}
                         </a>
                     </li>
-
                 </ul>
             </nav>
         @endcan
 
         {{-- User submenu --}}
-
         <nav aria-label="User submenu" class="mb-8">
-            <ul class="flex space-x-6 text-green-600 font-medium">
+            <ul class="flex space-x-6 text-green-600 dark:text-green-400 font-medium">
                 <li>
                     <a href="{{ route('plugins.MoneyPlugin.balance') }}" class="hover:underline">
                         {{ __('MoneyPlugin::menu.my balance') }}
                     </a>
                 </li>
             </ul>
-            <ul class="flex space-x-6 text-green-600 font-medium">
+            <ul class="flex space-x-6 text-green-600 dark:text-green-400 font-medium mt-2">
                 <li>
                     <a href="{{ route('plugins.MoneyPlugin.paymentmethods') }}" class="hover:underline">
                         {{ __('MoneyPlugin::menu.pay methods') }}
@@ -68,7 +64,6 @@ SPDX-FileContributor: Lican Huang
                 </li>
             </ul>
         </nav>
-
 
     </div>
 @endsection
