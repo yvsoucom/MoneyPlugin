@@ -24,15 +24,23 @@
 * Contact: yvsoucom@gmail.com
 * GPL License: https://www.gnu.org/licenses/gpl-3.0.html
 */
-
-
+ 
 namespace Plugins\MoneyPlugin\src\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CurrencyType extends Model
+class PRate extends Model
 {
-    protected $table = 'moneyplugin_currencytype';
+    protected $table = 'MoneyPlugin_prate';
+    protected $primaryKey = 'rateType';
+    public $timestamps = false;
 
-    protected $fillable = ['currency_name', 'remark'];
+    protected $fillable = [
+        'rateType',
+        'rateName',
+        'rate',
+        'cashtype',
+        'pernum',
+        'remarks'
+    ];
 }

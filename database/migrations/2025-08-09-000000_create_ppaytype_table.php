@@ -26,13 +26,23 @@
 */
 
 
-namespace Plugins\MoneyPlugin\src\Models;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+class CreatePpaytypeTable  extends Migration {
+    public function up()
+    {
+        Schema::create('MoneyPlugin_ppaytype', function (Blueprint $table) {
+            $table->integer('paytype')->primary();
+            $table->string('payname', 50);
+            $table->integer('cashtype');
+            $table->integer('to_cashtype');
+            $table->decimal('rate', 10, 5);
+        });
+    }
 
-use Illuminate\Database\Eloquent\Model;
-
-class CurrencyType extends Model
-{
-    protected $table = 'moneyplugin_currencytype';
-
-    protected $fillable = ['currency_name', 'remark'];
-}
+    public function down()
+    {
+        Schema::dropIfExists('MoneyPlugin_ppaytype');
+    }
+};

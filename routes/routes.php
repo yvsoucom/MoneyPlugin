@@ -30,6 +30,9 @@ use Plugins\MoneyPlugin\src\Http\Controllers\UserCenter\BalanceController;
 use Plugins\MoneyPlugin\src\Http\Controllers\PaymentMethodController;
 use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\UserBalanceController;
 use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\CurrencyTypeController;
+use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\PPayTypeController;
+use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\PRateController;
+
 Route::prefix('plugins')->name('plugins.')->group(function () {
     Route::prefix('MoneyPlugin')->name('MoneyPlugin.')->group(function () {
 
@@ -58,6 +61,11 @@ Route::prefix('plugins')->name('plugins.')->group(function () {
             Route::put('currencytype/{currencyType}', [CurrencyTypeController::class, 'update'])->name('currencytype.update');
         });
 
+        Route::middleware(['auth'])->group(function () {
+            Route::resource('ppaytype', PPayTypeController::class);
+            Route::resource('prate', PRateController::class);
+
+        });
 
     });
 });

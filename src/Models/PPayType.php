@@ -30,9 +30,16 @@ namespace Plugins\MoneyPlugin\src\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CurrencyType extends Model
+class PPayType extends Model
 {
-    protected $table = 'moneyplugin_currencytype';
+    protected $table = 'MoneyPlugin_ppaytype';
+    public $timestamps = false;
 
-    protected $fillable = ['currency_name', 'remark'];
+    protected $fillable = [
+        'paytype',
+        'payname',
+        'cashtype',
+        'to_cashtype',
+        'rate',
+    ];
 }

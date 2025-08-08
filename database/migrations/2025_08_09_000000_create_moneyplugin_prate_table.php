@@ -25,14 +25,28 @@
 * GPL License: https://www.gnu.org/licenses/gpl-3.0.html
 */
 
+ 
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-namespace Plugins\MoneyPlugin\src\Models;
-
-use Illuminate\Database\Eloquent\Model;
-
-class CurrencyType extends Model
+return new class extends Migration
 {
-    protected $table = 'moneyplugin_currencytype';
+    public function up(): void
+    {
+        Schema::create('MoneyPlugin_prate', function (Blueprint $table) {
+            $table->integer('rateType')->unsigned()->primary();
+            $table->string('rateName', 600);
+            $table->float('rate');
+            $table->enum('cashtype', ['1', '2', '3']);
+            $table->integer('pernum');
+            $table->text('remarks')->nullable();
+            $table->timestamps();
+        });
+    }
 
-    protected $fillable = ['currency_name', 'remark'];
-}
+    public function down(): void
+    {
+        Schema::dropIfExists('MoneyPlugin_prate');
+    }
+};

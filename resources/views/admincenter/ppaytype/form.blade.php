@@ -1,0 +1,65 @@
+{{--
+ SPDX-FileCopyrightText:  (c) 2025  Hangzhou Domain Zones Technology Co., Ltd.
+ SPDX-FileCopyrightText:  Institute of Future Science and Technology G.K., Tokyo
+ SPDX-FileContributor: Lican Huang
+ @created 2025-08-09
+*
+* SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-Proprietary
+* License: Dual Licensed – GPLv3 or Commercial
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* As an alternative to GPLv3, commercial licensing is available for organizations
+* or individuals requiring proprietary usage, private modifications, or support.
+*
+* Contact: yvsoucom@gmail.com
+* GPL License: https://www.gnu.org/licenses/gpl-3.0.html
+*/
+--}}
+<div class="mb-4">
+    <label class="block font-bold mb-1">Pay Type ID</label>
+    <input type="number" name="paytype" value="{{ old('paytype', $ppaytype->paytype ?? '') }}"
+           class="w-full border px-3 py-2 @error('paytype') border-red-500 @enderror">
+    @error('paytype')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+</div>
+
+<div class="mb-4">
+    <label class="block font-bold mb-1">Pay Name</label>
+    <input type="text" name="payname" value="{{ old('payname', $ppaytype->payname ?? '') }}"
+           class="w-full border px-3 py-2 @error('payname') border-red-500 @enderror">
+    @error('payname')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+</div>
+
+<div class="mb-4">
+    <label class="block font-bold mb-1">Cash Type</label>
+    <input type="number" name="cashtype" value="{{ old('cashtype', $ppaytype->cashtype ?? '') }}"
+           class="w-full border px-3 py-2 @error('cashtype') border-red-500 @enderror">
+    @error('cashtype')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+</div>
+
+<div class="mb-4">
+    <label class="block font-bold mb-1">To Cash Type</label>
+    <input type="number" name="to_cashtype" value="{{ old('to_cashtype', $ppaytype->to_cashtype ?? '') }}"
+           class="w-full border px-3 py-2 @error('to_cashtype') border-red-500 @enderror">
+    @error('to_cashtype')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+</div>
+
+<div class="mb-4">
+    <label class="block font-bold mb-1">Rate</label>
+    <input type="text" name="rate" value="{{ old('rate', $ppaytype->rate ?? '') }}"
+           class="w-full border px-3 py-2 @error('rate') border-red-500 @enderror">
+    @error('rate')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+</div>
+
+<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+    {{ $buttonText }}
+</button>
+<a href="{{ route('plugins.MoneyPlugin.ppaytype.index') }}" class="ml-4 text-gray-600 hover:underline">Cancel</a>

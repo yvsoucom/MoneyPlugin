@@ -1,11 +1,10 @@
-<?php
-/**
-* SPDX-FileCopyrightText: (c) 2025  Hangzhou Domain Zones Technology Co., Ltd.
-* SPDX-FileCopyrightText: Institute of Future Science and Technology G.K., Tokyo
-* SPDX-FileContributor: Lican Huang
-* @created 2025-08-09
+{{--
+ SPDX-FileCopyrightText:  (c) 2025  Hangzhou Domain Zones Technology Co., Ltd.
+ SPDX-FileCopyrightText:  Institute of Future Science and Technology G.K., Tokyo
+ SPDX-FileContributor: Lican Huang
+ @created 2025-08-09
 *
-* SPDX-License-Identifier: GPL-3.0-or-later
+* SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-Proprietary
 * License: Dual Licensed – GPLv3 or Commercial
 *
 * This program is free software: you can redistribute it and/or modify
@@ -24,15 +23,17 @@
 * Contact: yvsoucom@gmail.com
 * GPL License: https://www.gnu.org/licenses/gpl-3.0.html
 */
+--}}
+@extends('layouts.app')
 
+@section('content')
+<div class="container mx-auto p-6 bg-white shadow rounded min-h-screen">
+    <h1 class="text-2xl font-semibold mb-6">Edit Payment Type</h1>
 
-namespace Plugins\MoneyPlugin\src\Models;
-
-use Illuminate\Database\Eloquent\Model;
-
-class CurrencyType extends Model
-{
-    protected $table = 'moneyplugin_currencytype';
-
-    protected $fillable = ['currency_name', 'remark'];
-}
+    <form method="POST" action="{{ route('plugins.MoneyPlugin.ppaytype.update', $ppaytype) }}">
+        @csrf
+        @method('PUT')
+        @include('MoneyPlugin::ppaytype.form', ['buttonText' => 'Update Payment Type'])
+    </form>
+</div>
+@endsection
