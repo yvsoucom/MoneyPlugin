@@ -24,12 +24,12 @@
 * Contact: yvsoucom@gmail.com
 * GPL License: https://www.gnu.org/licenses/gpl-3.0.html
 */
-namespace Plugins\MoneyPlugin\src\Http\Controllers;
+namespace Plugins\MoneyPlugin\src\Http\Controllers\UserCenter;
 use App\Http\Controllers\Controller;
 class BalanceController extends Controller
 {
    public function index()
     {
-       return view('MoneyPlugin::mybalance.index');
+       return view('MoneyPlugin::usercenter.index');
     } // Controller methods will be defined here
 }

@@ -9,7 +9,7 @@ class PluginServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-       // Check for enabled.flag file
+        // Check for enabled.flag file
         if (!file_exists(__DIR__ . '/../enabled.flag')) {
             return; // ❌ Plugin is disabled
         }
@@ -19,7 +19,9 @@ class PluginServiceProvider extends ServiceProvider
             require __DIR__ . '/../routes/routes.php';
         });
 
-        }
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
+    }
 
     public function register()
     {

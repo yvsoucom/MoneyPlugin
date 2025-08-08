@@ -27,4 +27,5 @@
 @extends('layouts.app') {{-- Assuming main app layout --}}
 
 @section('content')
+
 @endsection

@@ -26,10 +26,10 @@
  */
 
 use Illuminate\Support\Facades\Route;
-use Plugins\MoneyPlugin\src\Http\Controllers\BalanceController;
+use Plugins\MoneyPlugin\src\Http\Controllers\UserCenter\BalanceController;
 use Plugins\MoneyPlugin\src\Http\Controllers\PaymentMethodController;
-use Plugins\MoneyPlugin\src\Http\Controllers\UserBalanceController;
-
+use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\UserBalanceController;
+use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\CurrencyTypeController;
 Route::prefix('plugins')->name('plugins.')->group(function () {
     Route::prefix('MoneyPlugin')->name('MoneyPlugin.')->group(function () {
 
@@ -49,6 +49,15 @@ Route::prefix('plugins')->name('plugins.')->group(function () {
             Route::get('/userbalance', [UserBalanceController::class, 'index'])
                 ->name('userbalance');
         });
+
+        Route::middleware(['auth'])->group(function () {
+            Route::get('currencytype', [CurrencyTypeController::class, 'index'])->name('currencytype.index');
+            Route::get('currencytype/create', [CurrencyTypeController::class, 'create'])->name('currencytype.create');
+            Route::post('currencytype', [CurrencyTypeController::class, 'store'])->name('currencytype.store');
+            Route::get('currencytype/{currencyType}/edit', [CurrencyTypeController::class, 'edit'])->name('currencytype.edit');
+            Route::put('currencytype/{currencyType}', [CurrencyTypeController::class, 'update'])->name('currencytype.update');
+        });
+
 
     });
 });
