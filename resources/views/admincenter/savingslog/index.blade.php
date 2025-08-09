@@ -27,37 +27,37 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto p-6 bg-white shadow rounded min-h-screen">
-    <h1 class="text-2xl font-semibold mb-6">Savings Log</h1>
+<div class="container mx-auto p-6 bg-white dark:bg-gray-900 shadow rounded min-h-screen">
+    <h1 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">Savings Log</h1>
 
-    <table class="table-auto w-full border-collapse border border-gray-300">
-        <thead class="bg-gray-100">
+    <table class="table-auto w-full border-collapse border border-gray-300 dark:border-gray-700">
+        <thead class="bg-gray-100 dark:bg-gray-700">
             <tr>
-                <th class="border px-4 py-2">Transaction No</th>
-                <th class="border px-4 py-2">Pay Type</th>
-                <th class="border px-4 py-2">User ID</th>
-                <th class="border px-4 py-2">Date/Time</th>
-                <th class="border px-4 py-2">Amount</th>
-                <th class="border px-4 py-2">Currency</th>
-                <th class="border px-4 py-2">Abstract</th>
-                <th class="border px-4 py-2">Savings</th>
+                <th class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">Transaction No</th>
+                <th class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">Pay Type</th>
+                <th class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">User ID</th>
+                <th class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">Date/Time</th>
+                <th class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">Amount</th>
+                <th class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">Currency</th>
+                <th class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">Abstract</th>
+                <th class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">Savings</th>
             </tr>
         </thead>
         <tbody>
             @forelse($logs as $log)
-                <tr>
-                    <td class="border px-4 py-2">{{ $log->transactionno }}</td>
-                    <td class="border px-4 py-2">{{ $log->paytype }}</td>
-                    <td class="border px-4 py-2">{{ $log->userid }}</td>
-                    <td class="border px-4 py-2">{{ $log->dtime }}</td>
-                    <td class="border px-4 py-2">{{ $log->amount }}</td>
-                    <td class="border px-4 py-2">{{ $log->currency }}</td>
-                    <td class="border px-4 py-2">{{ $log->abstract }}</td>
-                    <td class="border px-4 py-2">{{ $log->savings }}</td>
+                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">{{ $log->transactionno }}</td>
+                    <td class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">{{ $log->paytype }}</td>
+                    <td class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">{{ $log->userid }}</td>
+                    <td class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">{{ $log->dtime }}</td>
+                    <td class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">{{ $log->amount }}</td>
+                    <td class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">{{ $log->currency }}</td>
+                    <td class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">{{ $log->abstract }}</td>
+                    <td class="border px-4 py-2 dark:border-gray-600 text-gray-900 dark:text-gray-100">{{ $log->savings }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" class="border px-4 py-2 text-center">No data found</td>
+                    <td colspan="8" class="border px-4 py-2 text-center text-gray-500 dark:text-gray-400 dark:border-gray-600">No data found</td>
                 </tr>
             @endforelse
         </tbody>

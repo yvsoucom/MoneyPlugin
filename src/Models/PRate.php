@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\Model;
 class PRate extends Model
 {
     protected $table = 'MoneyPlugin_prate';
-    protected $primaryKey = 'rateType';
+    protected $primaryKey = 'id';
     public $timestamps = false;
 
     protected $fillable = [

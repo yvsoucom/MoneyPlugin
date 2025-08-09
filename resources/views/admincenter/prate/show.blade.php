@@ -31,7 +31,7 @@
     <h1 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">Rate Details</h1>
 
     <div class="mb-4 text-gray-900 dark:text-gray-100">
-        <strong>ID:</strong> {{ $prate->rateType }}
+        <strong>Rate Type:</strong> {{ $prate->rateType }}
     </div>
     <div class="mb-4 text-gray-900 dark:text-gray-100">
         <strong>Rate Name:</strong> {{ $prate->rateName }}

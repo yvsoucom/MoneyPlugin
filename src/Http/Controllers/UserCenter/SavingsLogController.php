@@ -41,6 +41,6 @@ class SavingsLogController extends Controller
             ->orderBy('dtime', 'desc')
             ->paginate(15);  // 15 per page, adjust as needed
 
-        return view('MoneyPlugin::savingslog.index', compact('logs'));
+        return view('MoneyPlugin::usercenter.savingslog.index', compact('logs'));
     }
 }

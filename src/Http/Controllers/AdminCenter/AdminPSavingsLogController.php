@@ -39,6 +39,6 @@ class AdminPSavingsLogController extends Controller
             ->orderByDesc('dtime')
             ->paginate(20);
 
-        return view('MoneyPlugin::psavingslog.index', compact('logs'));
+        return view('MoneyPlugin::admincenter.psavingslog.index', compact('logs'));
     }
 }

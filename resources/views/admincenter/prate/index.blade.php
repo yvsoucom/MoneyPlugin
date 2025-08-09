@@ -46,7 +46,7 @@
     <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
         <thead>
             <tr class="bg-gray-100 dark:bg-gray-700 border-b dark:border-gray-600">
-                <th class="py-2 px-4 border-b dark:border-gray-600 text-gray-900 dark:text-gray-100">ID</th>
+                <th class="py-2 px-4 border-b dark:border-gray-600 text-gray-900 dark:text-gray-100">rateType</th>
                 <th class="py-2 px-4 border-b dark:border-gray-600 text-gray-900 dark:text-gray-100">Rate Name</th>
                 <th class="py-2 px-4 border-b dark:border-gray-600 text-gray-900 dark:text-gray-100">Rate</th>
                 <th class="py-2 px-4 border-b dark:border-gray-600 text-gray-900 dark:text-gray-100">Cash Type</th>

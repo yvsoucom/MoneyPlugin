@@ -1,8 +1,8 @@
 {{--
- SPDX-FileCopyrightText:  (c) 2025  Hangzhou Domain Zones Technology Co., Ltd.
- SPDX-FileCopyrightText:  Institute of Future Science and Technology G.K., Tokyo
- SPDX-FileContributor: Lican Huang
- @created 2025-08-09
+SPDX-FileCopyrightText: (c) 2025 Hangzhou Domain Zones Technology Co., Ltd.
+SPDX-FileCopyrightText: Institute of Future Science and Technology G.K., Tokyo
+SPDX-FileContributor: Lican Huang
+@created 2025-08-09
 *
 * SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-Proprietary
 * License: Dual Licensed – GPLv3 or Commercial
@@ -27,44 +27,55 @@
 <div class="mb-4">
     <label class="block font-bold mb-1 text-gray-900 dark:text-gray-100">Pay Type ID</label>
     <input type="number" name="paytype" value="{{ old('paytype', $ppaytype->paytype ?? '') }}"
-           class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('paytype') border-red-500 @enderror">
+        class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('paytype') border-red-500 @enderror">
     @error('paytype')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
 </div>
 
 <div class="mb-4">
     <label class="block font-bold mb-1 text-gray-900 dark:text-gray-100">Pay Name</label>
     <input type="text" name="payname" value="{{ old('payname', $ppaytype->payname ?? '') }}"
-           class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('payname') border-red-500 @enderror">
+        class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('payname') border-red-500 @enderror">
     @error('payname')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
 </div>
 
 <div class="mb-4">
     <label class="block font-bold mb-1 text-gray-900 dark:text-gray-100">Cash Type</label>
-    <input type="number" name="cashtype" value="{{ old('cashtype', $ppaytype->cashtype ?? '') }}"
-           class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('cashtype') border-red-500 @enderror">
-    @error('cashtype')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+    <select id="cashtype" name="cashtype"
+        class="w-full border border-gray-300 dark:border-gray-700 rounded px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+        @foreach($currencyTypes as $currencyType)
+            <option value="{{ $currencyType->id }}" {{ old('cashtype', isset($ppaytype) ? $ppaytype->cashtype : '') == $currencyType->id ? 'selected' : '' }}>
+                {{ $currencyType->currency_name }}
+            </option>
+        @endforeach
+    </select>
 </div>
 
 <div class="mb-4">
     <label class="block font-bold mb-1 text-gray-900 dark:text-gray-100">To Cash Type</label>
-    <input type="number" name="to_cashtype" value="{{ old('to_cashtype', $ppaytype->to_cashtype ?? '') }}"
-           class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('to_cashtype') border-red-500 @enderror">
-    @error('to_cashtype')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+
+    <select id="to_cashtype" name="to_cashtype"
+        class="w-full border border-gray-300 dark:border-gray-700 rounded px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+        @foreach($currencyTypes as $currencyType)
+              <option value="{{ $currencyType->id }}" {{ old('to_cashtype', isset($ppaytype) ? $ppaytype->to_cashtype : '') == $currencyType->id ? 'selected' : '' }}>
+                {{ $currencyType->currency_name }}
+            </option>
+        @endforeach
+    </select>
+
 </div>
 
 <div class="mb-4">
     <label class="block font-bold mb-1 text-gray-900 dark:text-gray-100">Rate</label>
     <input type="text" name="rate" value="{{ old('rate', $ppaytype->rate ?? '') }}"
-           class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('rate') border-red-500 @enderror">
+        class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('rate') border-red-500 @enderror">
     @error('rate')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
 </div>
 
-<button type="submit" 
-        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
+<button type="submit"
+    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
     {{ $buttonText }}
 </button>
-<a href="{{ route('plugins.MoneyPlugin.ppaytype.index') }}" 
-   class="ml-4 text-gray-600 hover:underline dark:text-gray-300 dark:hover:text-white">
+<a href="{{ route('plugins.MoneyPlugin.ppaytype.index') }}"
+    class="ml-4 text-gray-600 hover:underline dark:text-gray-300 dark:hover:text-white">
     Cancel
 </a>
-

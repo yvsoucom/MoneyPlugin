@@ -27,32 +27,33 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto p-6 bg-white shadow rounded">
+<div class="container mx-auto p-6 bg-white dark:bg-gray-900 shadow rounded text-gray-900 dark:text-gray-100">
     <h1 class="text-2xl font-semibold mb-6">{{ __('MoneyPlugin::menu.Platform Balance') }}</h1>
 
-    <table class="min-w-full border border-gray-300">
+    <table class="min-w-full border border-gray-300 dark:border-gray-700">
         <thead>
-            <tr class="bg-gray-100">
-                <th class="px-4 py-2 border">ID</th>
-                <th class="px-4 py-2 border">Cash Type</th>
-                <th class="px-4 py-2 border">Income</th>
-                <th class="px-4 py-2 border">Pre Income</th>
-                <th class="px-4 py-2 border">Pay</th>
-                <th class="px-4 py-2 border">New</th>
+            <tr class="bg-gray-100 dark:bg-gray-800">
+      
+                <th class="px-4 py-2 border border-gray-300 dark:border-gray-700">Cash Type</th>
+                <th class="px-4 py-2 border border-gray-300 dark:border-gray-700">Income</th>
+                <th class="px-4 py-2 border border-gray-300 dark:border-gray-700">Pre Income</th>
+                <th class="px-4 py-2 border border-gray-300 dark:border-gray-700">Pay</th>
+                <th class="px-4 py-2 border border-gray-300 dark:border-gray-700">New</th>
             </tr>
         </thead>
         <tbody>
             @foreach($balances as $balance)
-                <tr>
-                    <td class="px-4 py-2 border">{{ $balance->id }}</td>
-                    <td class="px-4 py-2 border">{{ $balance->cashtype }}</td>
-                    <td class="px-4 py-2 border">{{ $balance->income }}</td>
-                    <td class="px-4 py-2 border">{{ $balance->preincome }}</td>
-                    <td class="px-4 py-2 border">{{ $balance->pay }}</td>
-                    <td class="px-4 py-2 border">{{ $balance->new }}</td>
+                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800">
+ 
+                    <td class="px-4 py-2 border border-gray-300 dark:border-gray-700">{{ $balance->cashtype }}</td>
+                    <td class="px-4 py-2 border border-gray-300 dark:border-gray-700">{{ $balance->income }}</td>
+                    <td class="px-4 py-2 border border-gray-300 dark:border-gray-700">{{ $balance->preincome }}</td>
+                    <td class="px-4 py-2 border border-gray-300 dark:border-gray-700">{{ $balance->pay }}</td>
+                    <td class="px-4 py-2 border border-gray-300 dark:border-gray-700">{{ $balance->new }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 </div>
 @endsection
+ 

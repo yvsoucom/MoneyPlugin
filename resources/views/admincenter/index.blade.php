@@ -51,7 +51,7 @@
         </a>
 
         <a href="{{ route('plugins.MoneyPlugin.psavingslog.index') }}" class="text-blue-600 dark:text-blue-400 hover:underline block">
-            Savings Log (Admin PSavingsLog)
+            Pay Savings Log (Admin PSavingsLog)
         </a>
 
         <a href="{{ route('plugins.MoneyPlugin.savingslog.index') }}" class="text-blue-600 dark:text-blue-400 hover:underline block">

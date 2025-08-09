@@ -38,6 +38,6 @@ class AdminSavingsLogController extends Controller
             ->orderByDesc('dtime')
             ->paginate(20);
 
-        return view('MoneyPlugin::savingslog.index', compact('logs'));
+        return view('MoneyPlugin::admincenter.savingslog.index', compact('logs'));
     }
 }

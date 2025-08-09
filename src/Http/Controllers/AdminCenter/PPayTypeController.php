@@ -1,35 +1,36 @@
 <?php
 /**
-* SPDX-FileCopyrightText: (c) 2025  Hangzhou Domain Zones Technology Co., Ltd.
-* SPDX-FileCopyrightText: Institute of Future Science and Technology G.K., Tokyo
-* SPDX-FileContributor: Lican Huang
-* @created 2025-08-09
-*
-* SPDX-License-Identifier: GPL-3.0-or-later
-* License: Dual Licensed – GPLv3 or Commercial
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* As an alternative to GPLv3, commercial licensing is available for organizations
-* or individuals requiring proprietary usage, private modifications, or support.
-*
-* Contact: yvsoucom@gmail.com
-* GPL License: https://www.gnu.org/licenses/gpl-3.0.html
-*/
+ * SPDX-FileCopyrightText: (c) 2025  Hangzhou Domain Zones Technology Co., Ltd.
+ * SPDX-FileCopyrightText: Institute of Future Science and Technology G.K., Tokyo
+ * SPDX-FileContributor: Lican Huang
+ * @created 2025-08-09
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ * License: Dual Licensed – GPLv3 or Commercial
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * As an alternative to GPLv3, commercial licensing is available for organizations
+ * or individuals requiring proprietary usage, private modifications, or support.
+ *
+ * Contact: yvsoucom@gmail.com
+ * GPL License: https://www.gnu.org/licenses/gpl-3.0.html
+ */
 
 
 namespace Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter;
- 
- 
+
+
 use Plugins\MoneyPlugin\src\Models\PPayType;
+use Plugins\MoneyPlugin\src\Models\CurrencyType;
 use Illuminate\Http\Request;
 
 class PPayTypeController
@@ -42,17 +43,19 @@ class PPayTypeController
 
     public function create()
     {
-        return view('MoneyPlugin::AdminCenter.ppaytype.create');
+        $currencyTypes = CurrencyType::all(); // Or add ordering if needed
+        return view('MoneyPlugin::AdminCenter.ppaytype.create', compact('currencyTypes'));
+
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'paytype'     => 'required|integer|unique:MoneyPlugin_ppaytype,paytype',
-            'payname'     => 'required|string|max:50',
-            'cashtype'    => 'required|integer',
+            'paytype' => 'required|integer|unique:MoneyPlugin_ppaytype,paytype',
+            'payname' => 'required|string|max:50',
+            'cashtype' => 'required|integer',
             'to_cashtype' => 'required|integer',
-            'rate'        => 'required|numeric|min:0',
+            'rate' => 'required|numeric|min:0',
         ]);
 
         PPayType::create($validated);
@@ -67,17 +70,19 @@ class PPayTypeController
 
     public function edit(PPayType $ppaytype)
     {
-        return view('MoneyPlugin::AdminCenter.ppaytype.edit', compact('ppaytype'));
+        $currencyTypes = CurrencyType::all(); // Or add ordering if needed
+
+        return view('MoneyPlugin::AdminCenter.ppaytype.edit', compact('ppaytype','currencyTypes'));
     }
 
     public function update(Request $request, PPayType $ppaytype)
     {
         $validated = $request->validate([
-            'paytype'     => 'required|integer|unique:MoneyPlugin_ppaytype,paytype,' . $ppaytype->paytype . ',paytype',
-            'payname'     => 'required|string|max:50',
-            'cashtype'    => 'required|integer',
+            'paytype' => 'required|integer|unique:MoneyPlugin_ppaytype,paytype,' . $ppaytype->paytype . ',paytype',
+            'payname' => 'required|string|max:50',
+            'cashtype' => 'required|integer',
             'to_cashtype' => 'required|integer',
-            'rate'        => 'required|numeric|min:0',
+            'rate' => 'required|numeric|min:0',
         ]);
 
         $ppaytype->update($validated);

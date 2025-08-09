@@ -25,7 +25,24 @@
 */
 --}}
 
-@extends('layouts.app') {{-- Assuming main app layout --}}
+@extends('layouts.app')
 
 @section('content')
+<div class="container mx-auto p-6 bg-white dark:bg-gray-900 shadow rounded min-h-screen">
+    <h1 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">Manage Money Plugin</h1>
+
+    <nav class="space-y-2">
+        
+
+       
+        <a href="{{ route('plugins.MoneyPlugin.mypsavingslog.index') }}" class="text-blue-600 dark:text-blue-400 hover:underline block">
+            Pay Savings Log (My PSavingsLog)
+        </a>
+
+        <a href="{{ route('plugins.MoneyPlugin.mysavingslog.index') }}" class="text-blue-600 dark:text-blue-400 hover:underline block">
+            Savings Log (My SavingsLog)
+        </a>
+    </nav>
+</div>
 @endsection
+ 
