@@ -32,6 +32,14 @@ use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\UserBalanceController;
 use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\CurrencyTypeController;
 use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\PPayTypeController;
 use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\PRateController;
+use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\PlatformBalanceController;
+use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\PSubBalanceController;
+use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\AdminPSavingsLogController;
+use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\AdminSavingsLogController;
+use Plugins\MoneyPlugin\src\Http\Controllers\UserCenter\PSavingsLogController;
+use Plugins\MoneyPlugin\src\Http\Controllers\UserCenter\SavingsLogController;
+
+
 
 Route::prefix('plugins')->name('plugins.')->group(function () {
     Route::prefix('MoneyPlugin')->name('MoneyPlugin.')->group(function () {
@@ -53,19 +61,33 @@ Route::prefix('plugins')->name('plugins.')->group(function () {
                 ->name('userbalance');
         });
 
-        Route::middleware(['auth'])->group(function () {
+        Route::middleware(['auth', 'role:admin'])->group(function () {
             Route::get('currencytype', [CurrencyTypeController::class, 'index'])->name('currencytype.index');
             Route::get('currencytype/create', [CurrencyTypeController::class, 'create'])->name('currencytype.create');
             Route::post('currencytype', [CurrencyTypeController::class, 'store'])->name('currencytype.store');
             Route::get('currencytype/{currencyType}/edit', [CurrencyTypeController::class, 'edit'])->name('currencytype.edit');
             Route::put('currencytype/{currencyType}', [CurrencyTypeController::class, 'update'])->name('currencytype.update');
-        });
 
-        Route::middleware(['auth'])->group(function () {
             Route::resource('ppaytype', PPayTypeController::class);
             Route::resource('prate', PRateController::class);
 
-        });
 
+            Route::get('/platformbalance', [PlatformBalanceController::class, 'index'])
+                ->name('plugins.MoneyPlugin.platformbalance.index');
+
+            Route::get('/psubbalance', [PSubBalanceController::class, 'index'])
+                ->name('plugins.MoneyPlugin.psubbalance.index');
+            Route::get('psavingslog', AdminPSavingsLogController::class)->only(['index']);
+            Route::get('savingslog', AdminSavingsLogController::class)
+                ->only(['index']);
+
+        });
+        Route::middleware(['auth'])->group(function () {
+
+            Route::get('mypsavingslog', PSavingsLogController::class)->only(['index']);
+            Route::get('mysavingslog', SavingsLogController::class)
+                ->only(['index']);
+
+        });
     });
 });
