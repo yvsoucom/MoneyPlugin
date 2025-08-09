@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CurrencyType extends Model
 {
-    protected $table = 'moneyplugin_currencytype';
+    protected $table = 'MoneyPlugin_currencytype';
 
     protected $fillable = ['currency_name', 'remark'];
 }

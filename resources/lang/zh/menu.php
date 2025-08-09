@@ -31,5 +31,9 @@ return [
     'user_balance' => '用户余额',
     'my balance' => '我的余额',
     'pay methods' => '支付方式',
+
+    'Payment and Balance information' => '支付和余额信息',
+    'Admin Balance Information' => '管理员余额信息',
+    'My Balance Information' => '我的余额信息',
 ];
 

@@ -37,12 +37,12 @@ class PPayTypeController
     public function index()
     {
         $paytypes = PPayType::all();
-        return view('MoneyPlugin::ppaytype.index', compact('paytypes'));
+        return view('MoneyPlugin::AdminCenter.ppaytype.index', compact('paytypes'));
     }
 
     public function create()
     {
-        return view('MoneyPlugin::ppaytype.create');
+        return view('MoneyPlugin::AdminCenter.ppaytype.create');
     }
 
     public function store(Request $request)
@@ -62,12 +62,12 @@ class PPayTypeController
 
     public function show(PPayType $ppaytype)
     {
-        return view('MoneyPlugin::ppaytype.show', compact('ppaytype'));
+        return view('MoneyPlugin::AdminCenter.ppaytype.show', compact('ppaytype'));
     }
 
     public function edit(PPayType $ppaytype)
     {
-        return view('MoneyPlugin::ppaytype.edit', compact('ppaytype'));
+        return view('MoneyPlugin::AdminCenter.ppaytype.edit', compact('ppaytype'));
     }
 
     public function update(Request $request, PPayType $ppaytype)

@@ -31,5 +31,9 @@ return [
     'user_balance' => 'ユーザー残高',
     'my balance'  => 'マイ残高',
     'pay methods' => '支払い方法',
+
+    'Payment and Balance information' => '支払いと残高情報',
+    'Admin Balance Information' => '管理者残高情報',
+    'My Balance Information' => '私の残高情報',
 ];
 

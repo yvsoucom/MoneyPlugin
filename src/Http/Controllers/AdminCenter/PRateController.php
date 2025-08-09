@@ -36,12 +36,12 @@ class PRateController extends Controller
     public function index()
     {
         $rates = PRate::all();
-        return view('MoneyPlugin::prate.index', compact('rates'));
+        return view('MoneyPlugin::admincenter.prate.index', compact('rates'));
     }
 
     public function create()
     {
-        return view('MoneyPlugin::prate.create');
+        return view('MoneyPlugin::admincenter.prate.create');
     }
 
     public function store(Request $request)
@@ -60,12 +60,12 @@ class PRateController extends Controller
 
     public function show(PRate $prate)
     {
-        return view('MoneyPlugin::prate.show', compact('prate'));
+        return view('MoneyPlugin::admincenter.prate.show', compact('prate'));
     }
 
     public function edit(PRate $prate)
     {
-        return view('MoneyPlugin::prate.edit', compact('prate'));
+        return view('MoneyPlugin::admincenter.prate.edit', compact('prate'));
     }
 
     public function update(Request $request, PRate $prate)

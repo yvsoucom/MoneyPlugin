@@ -27,17 +27,19 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto p-6 bg-white shadow rounded min-h-screen">
-    <h1 class="text-2xl font-semibold mb-6">Payment Type Details</h1>
+<div class="container mx-auto p-6 bg-white dark:bg-gray-900 shadow rounded min-h-screen">
+    <h1 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">Payment Type Details</h1>
 
-    <p><strong>Pay Type ID:</strong> {{ $ppaytype->paytype }}</p>
-    <p><strong>Pay Name:</strong> {{ $ppaytype->payname }}</p>
-    <p><strong>Cash Type:</strong> {{ $ppaytype->cashtype }}</p>
-    <p><strong>To Cash Type:</strong> {{ $ppaytype->to_cashtype }}</p>
-    <p><strong>Rate:</strong> {{ $ppaytype->rate }}</p>
+    <p class="text-gray-800 dark:text-gray-200"><strong>Pay Type ID:</strong> {{ $ppaytype->paytype }}</p>
+    <p class="text-gray-800 dark:text-gray-200"><strong>Pay Name:</strong> {{ $ppaytype->payname }}</p>
+    <p class="text-gray-800 dark:text-gray-200"><strong>Cash Type:</strong> {{ $ppaytype->cashtype }}</p>
+    <p class="text-gray-800 dark:text-gray-200"><strong>To Cash Type:</strong> {{ $ppaytype->to_cashtype }}</p>
+    <p class="text-gray-800 dark:text-gray-200"><strong>Rate:</strong> {{ $ppaytype->rate }}</p>
 
-    <a href="{{ route('plugins.MoneyPlugin.ppaytype.index') }}" class="text-blue-600 hover:underline mt-4 inline-block">
+    <a href="{{ route('plugins.MoneyPlugin.ppaytype.index') }}" 
+       class="text-blue-600 dark:text-blue-400 hover:underline mt-4 inline-block">
         Back to list
     </a>
 </div>
 @endsection
+

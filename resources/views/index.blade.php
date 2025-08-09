@@ -31,7 +31,7 @@ SPDX-FileContributor: Lican Huang
 
         {{-- Page title --}}
         <h1 class="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-100">
-            {{ __('MoneyPlugin::menu.Payment and Balance') }}
+            {{ __('MoneyPlugin::menu.Payment and Balance information') }}
         </h1>
 
         {{-- Admin submenu --}}
@@ -40,7 +40,7 @@ SPDX-FileContributor: Lican Huang
                 <ul class="flex space-x-6 text-blue-600 dark:text-blue-400 font-medium">
                     <li>
                         <a href="{{ route('plugins.MoneyPlugin.userbalance') }}" class="hover:underline">
-                            {{ __('MoneyPlugin::menu.user_balance') }}
+                            {{ __('MoneyPlugin::menu.Admin Balance Information') }}
                         </a>
                     </li>
                 </ul>
@@ -52,7 +52,7 @@ SPDX-FileContributor: Lican Huang
             <ul class="flex space-x-6 text-green-600 dark:text-green-400 font-medium">
                 <li>
                     <a href="{{ route('plugins.MoneyPlugin.balance') }}" class="hover:underline">
-                        {{ __('MoneyPlugin::menu.my balance') }}
+                        {{ __('MoneyPlugin::menu.My Balance Information') }}
                     </a>
                 </li>
             </ul>

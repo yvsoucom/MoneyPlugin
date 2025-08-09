@@ -27,8 +27,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto p-6 bg-white shadow rounded min-h-screen">
-    <h1 class="text-2xl font-semibold mb-6">Payment Types</h1>
+<div class="container mx-auto p-6 bg-white dark:bg-gray-900 shadow rounded min-h-screen">
+    <h1 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">Payment Types</h1>
 
     <a href="{{ route('plugins.MoneyPlugin.ppaytype.create') }}" 
        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mb-4 inline-block">
@@ -36,41 +36,43 @@
     </a>
 
     @if(session('success'))
-        <p class="text-green-600 mb-4">{{ session('success') }}</p>
+        <p class="text-green-600 dark:text-green-400 mb-4">{{ session('success') }}</p>
     @endif
 
-    <table class="w-full border border-gray-300">
+    <table class="w-full border border-gray-300 dark:border-gray-700">
         <thead>
-            <tr class="bg-gray-100">
-                <th class="px-4 py-2 border">Pay Type ID</th>
-                <th class="px-4 py-2 border">Pay Name</th>
-                <th class="px-4 py-2 border">Cash Type</th>
-                <th class="px-4 py-2 border">To Cash Type</th>
-                <th class="px-4 py-2 border">Rate</th>
-                <th class="px-4 py-2 border">Actions</th>
+            <tr class="bg-gray-100 dark:bg-gray-800">
+                <th class="px-4 py-2 border dark:border-gray-700 text-gray-900 dark:text-gray-100">Pay Type ID</th>
+                <th class="px-4 py-2 border dark:border-gray-700 text-gray-900 dark:text-gray-100">Pay Name</th>
+                <th class="px-4 py-2 border dark:border-gray-700 text-gray-900 dark:text-gray-100">Cash Type</th>
+                <th class="px-4 py-2 border dark:border-gray-700 text-gray-900 dark:text-gray-100">To Cash Type</th>
+                <th class="px-4 py-2 border dark:border-gray-700 text-gray-900 dark:text-gray-100">Rate</th>
+                <th class="px-4 py-2 border dark:border-gray-700 text-gray-900 dark:text-gray-100">Actions</th>
             </tr>
         </thead>
         <tbody>
             @forelse($paytypes as $type)
-                <tr>
-                    <td class="px-4 py-2 border">{{ $type->paytype }}</td>
-                    <td class="px-4 py-2 border">{{ $type->payname }}</td>
-                    <td class="px-4 py-2 border">{{ $type->cashtype }}</td>
-                    <td class="px-4 py-2 border">{{ $type->to_cashtype }}</td>
-                    <td class="px-4 py-2 border">{{ $type->rate }}</td>
-                    <td class="px-4 py-2 border space-x-2">
-                        <a href="{{ route('plugins.MoneyPlugin.ppaytype.show', $type) }}" class="text-blue-600 hover:underline">View</a>
-                        <a href="{{ route('plugins.MoneyPlugin.ppaytype.edit', $type) }}" class="text-yellow-600 hover:underline">Edit</a>
+                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800">
+                    <td class="px-4 py-2 border dark:border-gray-700 text-gray-800 dark:text-gray-200">{{ $type->paytype }}</td>
+                    <td class="px-4 py-2 border dark:border-gray-700 text-gray-800 dark:text-gray-200">{{ $type->payname }}</td>
+                    <td class="px-4 py-2 border dark:border-gray-700 text-gray-800 dark:text-gray-200">{{ $type->cashtype }}</td>
+                    <td class="px-4 py-2 border dark:border-gray-700 text-gray-800 dark:text-gray-200">{{ $type->to_cashtype }}</td>
+                    <td class="px-4 py-2 border dark:border-gray-700 text-gray-800 dark:text-gray-200">{{ $type->rate }}</td>
+                    <td class="px-4 py-2 border dark:border-gray-700 space-x-2">
+                        <a href="{{ route('plugins.MoneyPlugin.ppaytype.show',  ['ppaytype'=>$type->id]) }}" class="text-blue-600 dark:text-blue-400 hover:underline">View</a>
+                        <a href="{{ route('plugins.MoneyPlugin.ppaytype.edit', $type) }}" class="text-yellow-600 dark:text-yellow-400 hover:underline">Edit</a>
                         <form method="POST" action="{{ route('plugins.MoneyPlugin.ppaytype.destroy', $type) }}" class="inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:underline"
+                            <button type="submit" class="text-red-600 dark:text-red-400 hover:underline"
                                 onclick="return confirm('Are you sure?')">Delete</button>
                         </form>
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="6" class="px-4 py-2 border text-center">No records found</td></tr>
+                <tr>
+                    <td colspan="6" class="px-4 py-2 border dark:border-gray-700 text-center text-gray-800 dark:text-gray-200">No records found</td>
+                </tr>
             @endforelse
         </tbody>
     </table>

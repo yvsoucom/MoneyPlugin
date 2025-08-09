@@ -27,12 +27,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto p-6 bg-white shadow rounded min-h-screen">
-    <h1 class="text-2xl font-semibold mb-6">Add Payment Type</h1>
+<div class="container mx-auto p-6 bg-white dark:bg-gray-900 shadow rounded min-h-screen">
+    <h1 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">Add Payment Type</h1>
 
     <form method="POST" action="{{ route('plugins.MoneyPlugin.ppaytype.store') }}">
         @csrf
-        @include('MoneyPlugin::ppaytype.form', ['buttonText' => 'Add Payment Type'])
+        @include('MoneyPlugin::admincenter.ppaytype.form', ['buttonText' => 'Add Payment Type'])
     </form>
 </div>
 @endsection
+

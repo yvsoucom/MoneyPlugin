@@ -27,28 +27,32 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto p-6 bg-white shadow rounded min-h-screen">
-    <h1 class="text-2xl font-semibold mb-6">Rate Details</h1>
+<div class="container mx-auto p-6 bg-white dark:bg-gray-900 shadow rounded min-h-screen">
+    <h1 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">Rate Details</h1>
 
-    <div class="mb-4">
+    <div class="mb-4 text-gray-900 dark:text-gray-100">
         <strong>ID:</strong> {{ $prate->rateType }}
     </div>
-    <div class="mb-4">
+    <div class="mb-4 text-gray-900 dark:text-gray-100">
         <strong>Rate Name:</strong> {{ $prate->rateName }}
     </div>
-    <div class="mb-4">
+    <div class="mb-4 text-gray-900 dark:text-gray-100">
         <strong>Rate:</strong> {{ $prate->rate }}
     </div>
-    <div class="mb-4">
+    <div class="mb-4 text-gray-900 dark:text-gray-100">
         <strong>Cash Type:</strong> {{ $prate->cashtype }}
     </div>
-    <div class="mb-4">
+    <div class="mb-4 text-gray-900 dark:text-gray-100">
         <strong>Per Number:</strong> {{ $prate->pernum }}
     </div>
-    <div class="mb-4">
+    <div class="mb-4 text-gray-900 dark:text-gray-100">
         <strong>Remarks:</strong> {{ $prate->remarks }}
     </div>
 
-    <a href="{{ route('plugins.MoneyPlugin.prate.index') }}" class="text-gray-600 hover:underline">Back to list</a>
+    <a href="{{ route('plugins.MoneyPlugin.prate.index') }}" 
+       class="text-gray-600 dark:text-gray-300 hover:underline">
+        Back to list
+    </a>
 </div>
 @endsection
+

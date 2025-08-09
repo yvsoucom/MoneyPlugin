@@ -1,29 +1,29 @@
 <?php
 /**
-* SPDX-FileCopyrightText: (c) 2025  Hangzhou Domain Zones Technology Co., Ltd.
-* SPDX-FileCopyrightText: Institute of Future Science and Technology G.K., Tokyo
-* SPDX-FileContributor: Lican Huang
-* @created 2025-08-09
-*
-* SPDX-License-Identifier: GPL-3.0-or-later
-* License: Dual Licensed – GPLv3 or Commercial
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* As an alternative to GPLv3, commercial licensing is available for organizations
-* or individuals requiring proprietary usage, private modifications, or support.
-*
-* Contact: yvsoucom@gmail.com
-* GPL License: https://www.gnu.org/licenses/gpl-3.0.html
-*/
+ * SPDX-FileCopyrightText: (c) 2025  Hangzhou Domain Zones Technology Co., Ltd.
+ * SPDX-FileCopyrightText: Institute of Future Science and Technology G.K., Tokyo
+ * SPDX-FileContributor: Lican Huang
+ * @created 2025-08-09
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ * License: Dual Licensed – GPLv3 or Commercial
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * As an alternative to GPLv3, commercial licensing is available for organizations
+ * or individuals requiring proprietary usage, private modifications, or support.
+ *
+ * Contact: yvsoucom@gmail.com
+ * GPL License: https://www.gnu.org/licenses/gpl-3.0.html
+ */
 
 
 namespace Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter;
@@ -37,12 +37,16 @@ class CurrencyTypeController extends Controller
     public function index()
     {
         $currencies = CurrencyType::all();
-        return view('MoneyPlugin::currencytype.index', compact('currencies'));
+        return view('MoneyPlugin::admincenter.currencytype.index', compact('currencies'));
     }
 
     public function edit(CurrencyType $currencyType)
     {
-        return view('MoneyPlugin::currencytype.edit', ['currency' => $currencyType]);
+
+        $id = request('currencytype');
+        $currencyType = CurrencyType::findOrFail($id);
+        logger()->info('Editing currency type: ' . $currencyType);
+        return view('MoneyPlugin::admincenter.currencytype.edit', ['currency' => $currencyType]);
     }
 
     public function update(Request $request, CurrencyType $currencyType)
@@ -51,6 +55,9 @@ class CurrencyTypeController extends Controller
             'currency_name' => 'required|string|max:100',
             'remark' => 'nullable|string',
         ]);
+        $id = request('id');
+        $currencyType = CurrencyType::findOrFail($id);
+        logger('Updating currency type: ' . $currencyType->id . ' with data: ' . json_encode($request->all()));
 
         $currencyType->update($request->only('currency_name', 'remark'));
 
@@ -58,7 +65,7 @@ class CurrencyTypeController extends Controller
     }
     public function create()
     {
-        return view('MoneyPlugin::currencytype.create');
+        return view('MoneyPlugin::admincenter.currencytype.create');
     }
 
     public function store(Request $request)
@@ -76,5 +83,13 @@ class CurrencyTypeController extends Controller
         return redirect()->route('plugins.MoneyPlugin.currencytype.index')
             ->with('success', 'Currency added successfully!');
     }
+    public function destroy(CurrencyType $currencyType)
+    {
+        $id = request('id');
+        $currencyType = CurrencyType::findOrFail($id);
+        $currencyType->delete();
 
+        return redirect()->route('plugins.MoneyPlugin.currencytype.index')
+            ->with('success', 'Currency deleted successfully!');
+    }
 }

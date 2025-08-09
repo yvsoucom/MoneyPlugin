@@ -25,41 +25,46 @@
 */
 --}}
 <div class="mb-4">
-    <label class="block font-bold mb-1">Pay Type ID</label>
+    <label class="block font-bold mb-1 text-gray-900 dark:text-gray-100">Pay Type ID</label>
     <input type="number" name="paytype" value="{{ old('paytype', $ppaytype->paytype ?? '') }}"
-           class="w-full border px-3 py-2 @error('paytype') border-red-500 @enderror">
+           class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('paytype') border-red-500 @enderror">
     @error('paytype')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
 </div>
 
 <div class="mb-4">
-    <label class="block font-bold mb-1">Pay Name</label>
+    <label class="block font-bold mb-1 text-gray-900 dark:text-gray-100">Pay Name</label>
     <input type="text" name="payname" value="{{ old('payname', $ppaytype->payname ?? '') }}"
-           class="w-full border px-3 py-2 @error('payname') border-red-500 @enderror">
+           class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('payname') border-red-500 @enderror">
     @error('payname')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
 </div>
 
 <div class="mb-4">
-    <label class="block font-bold mb-1">Cash Type</label>
+    <label class="block font-bold mb-1 text-gray-900 dark:text-gray-100">Cash Type</label>
     <input type="number" name="cashtype" value="{{ old('cashtype', $ppaytype->cashtype ?? '') }}"
-           class="w-full border px-3 py-2 @error('cashtype') border-red-500 @enderror">
+           class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('cashtype') border-red-500 @enderror">
     @error('cashtype')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
 </div>
 
 <div class="mb-4">
-    <label class="block font-bold mb-1">To Cash Type</label>
+    <label class="block font-bold mb-1 text-gray-900 dark:text-gray-100">To Cash Type</label>
     <input type="number" name="to_cashtype" value="{{ old('to_cashtype', $ppaytype->to_cashtype ?? '') }}"
-           class="w-full border px-3 py-2 @error('to_cashtype') border-red-500 @enderror">
+           class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('to_cashtype') border-red-500 @enderror">
     @error('to_cashtype')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
 </div>
 
 <div class="mb-4">
-    <label class="block font-bold mb-1">Rate</label>
+    <label class="block font-bold mb-1 text-gray-900 dark:text-gray-100">Rate</label>
     <input type="text" name="rate" value="{{ old('rate', $ppaytype->rate ?? '') }}"
-           class="w-full border px-3 py-2 @error('rate') border-red-500 @enderror">
+           class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('rate') border-red-500 @enderror">
     @error('rate')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
 </div>
 
-<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+<button type="submit" 
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
     {{ $buttonText }}
 </button>
-<a href="{{ route('plugins.MoneyPlugin.ppaytype.index') }}" class="ml-4 text-gray-600 hover:underline">Cancel</a>
+<a href="{{ route('plugins.MoneyPlugin.ppaytype.index') }}" 
+   class="ml-4 text-gray-600 hover:underline dark:text-gray-300 dark:hover:text-white">
+    Cancel
+</a>
+
