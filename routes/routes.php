@@ -41,8 +41,10 @@ use Plugins\MoneyPlugin\src\Http\Controllers\UserCenter\SavingsLogController;
 
 use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\AlipayController;
 use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\WeChatPayController;
+use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\PayPalController;
+use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\PayPayController;
+use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\StripePaymentController;
 
- 
 
 Route::prefix('plugins')->name('plugins.')->group(function () {
     Route::prefix('MoneyPlugin')->name('MoneyPlugin.')->group(function () {
@@ -98,5 +100,22 @@ Route::prefix('plugins')->name('plugins.')->group(function () {
         Route::post('/wechat/pay', [WeChatPayController::class, 'pay'])->name('wechat.pay');
         Route::post('/wechat/notify', [WeChatPayController::class, 'notify'])->name('wechat.notify');
         Route::get('/wechat/return', [WeChatPayController::class, 'return'])->name('wechat.return');
+
+        // PayPal
+
+        Route::get('/paypal/create-payment', [PayPalController::class, 'createPayment'])->name('paypal.create');
+        Route::get('/paypal/success', [PayPalController::class, 'success'])->name('paypal.success');
+        Route::get('/paypal/cancel', [PayPalController::class, 'cancel'])->name('paypal.cancel');
+
+
+        // PayPay
+
+        Route::post('/paypay/create-payment', [PayPayController::class, 'createPayment']);
+
+        //visa
+
+
+        Route::post('/stripe/charge', [StripePaymentController::class, 'charge']);
+
     });
 });
