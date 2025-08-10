@@ -27,14 +27,14 @@ SPDX-FileContributor: Lican Huang
 <div class="mb-4">
     <label class="block font-bold mb-1 text-gray-900 dark:text-gray-100">Pay Type ID</label>
     <input type="number" name="paytype" value="{{ old('paytype', $ppaytype->paytype ?? '') }}"
-        class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('paytype') border-red-500 @enderror">
+        class="w-full border  dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('paytype') border-red-500 @enderror">
     @error('paytype')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
 </div>
 
 <div class="mb-4">
     <label class="block font-bold mb-1 text-gray-900 dark:text-gray-100">Pay Name</label>
     <input type="text" name="payname" value="{{ old('payname', $ppaytype->payname ?? '') }}"
-        class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('payname') border-red-500 @enderror">
+        class="w-full border  dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('payname') border-red-500 @enderror">
     @error('payname')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
 </div>
 
@@ -67,7 +67,7 @@ SPDX-FileContributor: Lican Huang
 <div class="mb-4">
     <label class="block font-bold mb-1 text-gray-900 dark:text-gray-100">Rate</label>
     <input type="text" name="rate" value="{{ old('rate', $ppaytype->rate ?? '') }}"
-        class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('rate') border-red-500 @enderror">
+        class="w-full border  dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 @error('rate') border-red-500 @enderror">
     @error('rate')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
 </div>
 

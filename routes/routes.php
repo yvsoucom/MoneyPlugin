@@ -39,7 +39,10 @@ use Plugins\MoneyPlugin\src\Http\Controllers\AdminCenter\AdminSavingsLogControll
 use Plugins\MoneyPlugin\src\Http\Controllers\UserCenter\PSavingsLogController;
 use Plugins\MoneyPlugin\src\Http\Controllers\UserCenter\SavingsLogController;
 
+use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\AlipayController;
+use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\WeChatPayController;
 
+ 
 
 Route::prefix('plugins')->name('plugins.')->group(function () {
     Route::prefix('MoneyPlugin')->name('MoneyPlugin.')->group(function () {
@@ -63,7 +66,7 @@ Route::prefix('plugins')->name('plugins.')->group(function () {
 
         Route::middleware(['auth', 'role:admin'])->group(function () {
             Route::resource('currencytype', CurrencyTypeController::class);
-    
+
             Route::resource('ppaytype', PPayTypeController::class);
             Route::resource('prate', PRateController::class);
 
@@ -85,5 +88,15 @@ Route::prefix('plugins')->name('plugins.')->group(function () {
                 ->only(['index']);
 
         });
+
+        // Alipay
+        Route::post('/alipay/pay', [AlipayController::class, 'pay'])->name('alipay.pay');
+        Route::post('/alipay/notify', [AlipayController::class, 'notify'])->name('alipay.notify');
+        Route::get('/alipay/return', [AlipayController::class, 'return'])->name('alipay.return');
+
+        // WeChat
+        Route::post('/wechat/pay', [WeChatPayController::class, 'pay'])->name('wechat.pay');
+        Route::post('/wechat/notify', [WeChatPayController::class, 'notify'])->name('wechat.notify');
+        Route::get('/wechat/return', [WeChatPayController::class, 'return'])->name('wechat.return');
     });
 });
