@@ -1,6 +1,7 @@
 {
   "name": "MoneyPlugin",
   "version": "1.0.0",
+  "type": "plugin",
   "description": "MoneyPlugin that pay money via several ways.",
   "shortcodes": {
     "paySem": "pay_sem_handler",
