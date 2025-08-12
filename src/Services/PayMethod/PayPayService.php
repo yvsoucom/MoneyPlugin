@@ -1,4 +1,6 @@
 <?php
+namespace plugins\MoneyPlugin\src\Services\PayMethod;
+
 use GuzzleHttp\Client;
 
 class PayPayService

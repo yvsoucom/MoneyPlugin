@@ -33,4 +33,11 @@ class AlipayService
     {
         return $this->alipay->verify($params);
     }
+
+    protected function process($tradeNo, $amount, $currency, $metadata)
+    {
+        // Call AliPay SDK or REST here
+        return ['gateway' => 'AliPay', 'status' => 'pending', 'trade_no' => $tradeNo];
+    }
+
 }

@@ -45,6 +45,7 @@ use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\PayPalController;
 use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\PayPayController;
 use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\StripePaymentController;
 
+use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\WebhookController;
 
 Route::prefix('plugins')->name('plugins.')->group(function () {
     Route::prefix('MoneyPlugin')->name('MoneyPlugin.')->group(function () {
@@ -116,6 +117,9 @@ Route::prefix('plugins')->name('plugins.')->group(function () {
 
 
         Route::post('/stripe/charge', [StripePaymentController::class, 'charge']);
+
+
+        Route::post('/webhook/payment', [WebhookController::class, 'handle']);
 
     });
 });

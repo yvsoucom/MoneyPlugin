@@ -1,9 +1,9 @@
 <?php
- 
+
 
 namespace plugins\MoneyPlugin\src\Services\PayMethod;
 
-class WeChatPayService
+class WeChatService
 {
     protected $config;
 
@@ -20,5 +20,10 @@ class WeChatPayService
     public function handleNotify(array $data)
     {
         // Verify and process WeChat Pay notify callback
+    }
+    protected function process($tradeNo, $amount, $currency, $metadata)
+    {
+        // Call WeChat Pay SDK or REST here
+        return ['gateway' => 'WeChat Pay', 'status' => 'pending', 'trade_no' => $tradeNo];
     }
 }
