@@ -1,7 +1,7 @@
 <?php
 
 namespace plugins\MoneyPlugin\src\Services\PayMethod;
-
+use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
 class PayPalService
@@ -46,7 +46,7 @@ class PayPalService
         $response = $this->client->post('/v2/checkout/orders', [
             'headers' => [
                 'Authorization' => "Bearer $accessToken",
-                'Content-Type'  => 'application/json',
+                'Content-Type' => 'application/json',
             ],
             'json' => [
                 'intent' => 'CAPTURE',
@@ -76,12 +76,37 @@ class PayPalService
         $response = $this->client->post("/v2/checkout/orders/$orderId/capture", [
             'headers' => [
                 'Authorization' => "Bearer $accessToken",
-                'Content-Type'  => 'application/json',
+                'Content-Type' => 'application/json',
             ],
         ]);
 
         return json_decode($response->getBody(), true);
     }
 
-    
+    /* ---------- PayPal ---------- */
+    protected function process($tradeNo, $amount, $currency, $metadata)
+    {
+        return $this->createOrder(
+            $tradeNo,
+            $amount,
+            strtoupper($currency),
+            array_merge($metadata, ['trade_no' => $tradeNo])
+        );
+        
+    }
+
+     protected function handleWebhook(Request $request)
+    {
+        $eventType = $request->input('event_type');
+
+        if ($eventType === 'CHECKOUT.ORDER.APPROVED') {
+            $tradeNo = $request->input('resource.reference_id');
+            $amount = $request->input('resource.purchase_units.0.amount.value');
+            $gateway = 'paypal';
+            return(compact('tradeNo', 'gateway', 'amount'));
+        }
+        return response()->json(['status' => 'no']);
+    }
+
+
 }

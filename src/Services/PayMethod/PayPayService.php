@@ -1,8 +1,8 @@
 <?php
 namespace plugins\MoneyPlugin\src\Services\PayMethod;
-
+use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-
+ 
 class PayPayService
 {
     protected $client;
@@ -55,5 +55,50 @@ class PayPayService
             // Handle errors
             return ['error' => $e->getMessage()];
         }
+    }
+
+      /* ---------- PayPay (Japan) ---------- */
+    protected function process($tradeNo, $amount, $currency, $metadata)
+    {
+        $client = new Client([
+            'base_uri' => 'https://api.paypay.ne.jp/v2/',
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . config('services.paypay.token'),
+            ]
+        ]);
+
+        $payload = [
+            'merchantPaymentId' => $tradeNo,
+            'amount' => [
+                'amount' => $amount,
+                'currency' => strtoupper($currency)
+            ],
+            'codeType' => 'ORDER_QR',
+            'orderDescription' => 'Order #' . $tradeNo,
+        ];
+
+        try {
+            $res = $client->post('payments', ['json' => $payload]);
+            return [
+                'gateway' => 'PayPay',
+                'status' => 'pending',
+                'data' => json_decode($res->getBody(), true)
+            ];
+        } catch (\Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
+
+
+    protected function handlePayPayWebhook(Request $request)
+    {
+        if ($request->input('status') === 'COMPLETED') {
+            $tradeNo = $request->input('merchantPaymentId');
+            $amount = $request->input('amount.amount');
+            $gateway = 'paypay';
+            return(compact('tradeNo', 'gateway', 'amount'));
+        }
+        return response()->json(['status' => 'no']);
     }
 }

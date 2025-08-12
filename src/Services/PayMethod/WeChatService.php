@@ -2,7 +2,7 @@
 
 
 namespace plugins\MoneyPlugin\src\Services\PayMethod;
-
+use Illuminate\Http\Request;
 class WeChatService
 {
     protected $config;
@@ -25,5 +25,17 @@ class WeChatService
     {
         // Call WeChat Pay SDK or REST here
         return ['gateway' => 'WeChat Pay', 'status' => 'pending', 'trade_no' => $tradeNo];
+    }
+    protected function handleWebhook(Request $request)
+    {
+        if ($request->input('result_code') === 'SUCCESS') {
+            $tradeNo = $request->input('out_trade_no');
+            $amount = $request->input('total_fee') / 100;
+
+            $gateway = 'wx';
+            return (compact('tradeNo', 'gateway', 'amount'));
+
+        }
+        return response()->json(['status' => 'no']);
     }
 }

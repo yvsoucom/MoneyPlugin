@@ -3,6 +3,8 @@
 namespace plugins\MoneyPlugin\src\Services\PayMethod;
 
 use Alipay\EasySDK\Kernel\Factory;
+use Illuminate\Http\Request;
+
 
 
 class AlipayService
@@ -38,6 +40,19 @@ class AlipayService
     {
         // Call AliPay SDK or REST here
         return ['gateway' => 'AliPay', 'status' => 'pending', 'trade_no' => $tradeNo];
+    }
+
+
+
+    protected function handleWebhook(Request $request)
+    {
+        if ($request->input('trade_status') === 'TRADE_SUCCESS') {
+            $tradeNo = $request->input('out_trade_no');
+            $amount = $request->input('total_amount');
+            $gateway = 'ali';
+            return(compact('tradeNo', 'gateway', 'amount'));
+        }
+        return response()->json(['status' => 'no']);
     }
 
 }
