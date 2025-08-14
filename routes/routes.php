@@ -122,7 +122,7 @@ Route::prefix('plugins')->name('plugins.')->group(function () {
 
         Route::post('/webhook/payment', [WebhookController::class, 'handle']);
 
-        Route::post('/shortcode/paysem', [PaySemController::class, 'handle'])->name('handle');
+        Route::get('/shortcode/paysem', [PaySemController::class, 'handle'])->name('shortcode.paysem');
 
     });
 });

@@ -34,9 +34,12 @@ use App\Http\Controllers\Controller;
 use plugins\MoneyPlugin\src\Services\Shortcode\PayShortcodeService;
 class PaySemController extends Controller
 {
-    public function handle($sem, $p, $type, $seller, $content)
+    public function handle($attrs, $content = '')
     {
-
+        $sem = $attrs['sem'] ?? 0;
+        $p = $attrs['p'] ?? '';
+        $type = $attrs['type'] ?? '';
+        $seller = $attrs['seller'] ?? '';
 
         // Case: SEM is zero → directly return
         if ($sem == 0) {
@@ -69,9 +72,9 @@ class PaySemController extends Controller
         }
 
         // Check SEM balance
-        if (!(new PayShortcodeService())-> checkEnoughSem(  $sem,   $p,   $type) ) {
-          //  $redirectTo = urlencode(url()->current() . '?' . http_build_query(request()->query()));
-           // $clickUrl = SITEURL . "/dc/single.php?groupid=28.56698.327.9487&pid=1317759&redirect_to={$redirectTo}";
+        if (!(new PayShortcodeService())->checkEnoughSem($sem, $p, $type)) {
+            //  $redirectTo = urlencode(url()->current() . '?' . http_build_query(request()->query()));
+            // $clickUrl = SITEURL . "/dc/single.php?groupid=28.56698.327.9487&pid=1317759&redirect_to={$redirectTo}";
 
             return view('paysem.insufficient', compact('sem', 'clickUrl'));
         }
