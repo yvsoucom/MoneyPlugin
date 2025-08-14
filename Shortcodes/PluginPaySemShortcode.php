@@ -26,8 +26,6 @@ add_plugin_shortcode($pluginName, 'paysem', function ($attrs, $content = '') {
     $buttonHtml = '<a href="' . e($url) . '" class="btn btn-primary">
         Pay ' . e($sem) . ' SEM
     </a>';
-
-    
-
+  
     return $buttonHtml;
 });
