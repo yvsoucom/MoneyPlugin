@@ -3,16 +3,15 @@
 namespace plugins\MoneyPlugin\src\Http\Controllers\PayMethod;
 
 use Illuminate\Http\Request;
-use plugins\MoneyPlugin\src\Services\PayMethod\WeChatPayService;
 use App\Http\Controllers\Controller;
- 
- 
+use plugins\MoneyPlugin\src\Services\PayMethod\WeChatService;
+
 
 class WeChatPayController extends Controller
 {
     protected $wechat;
 
-    public function __construct(WeChatPayService $wechat)
+    public function __construct(WeChatService $wechat)
     {
         $this->wechat = $wechat;
     }
@@ -38,7 +37,7 @@ class WeChatPayController extends Controller
     {
         return view('moneyplugin.payment-success', [
             'order_id' => $request->input('out_trade_no'),
-            'status'   => 'Paid'
+            'status' => 'Paid'
         ]);
     }
 }

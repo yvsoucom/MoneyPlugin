@@ -32,9 +32,15 @@
     <h1 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">Manage Money Plugin</h1>
 
     <nav class="space-y-2">
-        
-
-       
+        <a href="{{ route('plugins.MoneyPlugin.pay.recharge') }}" class="text-blue-600 dark:text-blue-400 hover:underline block">
+            Pay recharge
+        </a>  
+        <a href="{{ route('plugins.MoneyPlugin.pay.rechargeSem') }}" class="text-blue-600 dark:text-blue-400 hover:underline block">
+            Pay recharge Sem
+        </a>   
+         <a href="{{ route('plugins.MoneyPlugin.pay.directpay') }}" class="text-blue-600 dark:text-blue-400 hover:underline block">
+            Direct Pay  
+        </a>  
         <a href="{{ route('plugins.MoneyPlugin.mypsavingslog.index') }}" class="text-blue-600 dark:text-blue-400 hover:underline block">
             Pay Savings Log (My PSavingsLog)
         </a>

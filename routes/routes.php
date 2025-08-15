@@ -46,7 +46,10 @@ use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\PayPayController;
 use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\StripePaymentController;
 
 use Plugins\MoneyPlugin\src\Http\Controllers\PayMethod\WebhookController;
-use  Plugins\MoneyPlugin\src\Http\Controllers\Shortcode\PaySemController;
+use Plugins\MoneyPlugin\src\Http\Controllers\Shortcode\PaySemController;
+
+use Plugins\MoneyPlugin\src\Http\Controllers\Pay\PayController;
+
 
 Route::prefix('plugins')->name('plugins.')->group(function () {
     Route::prefix('MoneyPlugin')->name('MoneyPlugin.')->group(function () {
@@ -92,6 +95,19 @@ Route::prefix('plugins')->name('plugins.')->group(function () {
                 ->only(['index']);
 
         });
+
+        Route::middleware(['auth'])->group(function () {
+
+            Route::prefix('pay')->name('pay.')->group(function () {
+
+                Route::post('/recharge', [PayController::class, 'recharge'])->name('recharge');
+                Route::post('/rechargeSem', [PayController::class, 'rechargeSem'])->name('rechargeSem');
+                Route::post('/directpay', [PayController::class, 'directpay'])->name('directpay');
+
+            });
+        });
+
+
 
         // Alipay
         Route::post('/alipay/pay', [AlipayController::class, 'pay'])->name('alipay.pay');
