@@ -100,9 +100,16 @@ Route::prefix('plugins')->name('plugins.')->group(function () {
 
             Route::prefix('pay')->name('pay.')->group(function () {
 
-                Route::post('/recharge', [PayController::class, 'recharge'])->name('recharge');
-                Route::post('/rechargeSem', [PayController::class, 'rechargeSem'])->name('rechargeSem');
-                Route::post('/directpay', [PayController::class, 'directpay'])->name('directpay');
+                Route::get('/recharge', [PayController::class, 'recharge'])->name('recharge');
+                Route::post('/rechargehandle', [PayController::class, 'rechargehandle'])->name('rechargehandle');
+
+                Route::get('/rechargeSem', [PayController::class, 'rechargeSem'])->name('rechargeSem');
+
+                Route::post('/rechargeSemhandle', [PayController::class, 'rechargeSemhandle'])->name('rechargeSemhandle');
+
+                Route::get('/directpay', [PayController::class, 'directpay'])->name('directpay');
+                Route::post('/directpayhandle', [PayController::class, 'directpayhandle'])->name('directpayhandle');
+
 
             });
         });
